@@ -12,6 +12,7 @@ import java.util.List;
 
 import static com.emi.medicalimageprocessing.utils.Constants.APP_ROOT;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @Api(APP_ROOT + "/users")
 public interface UserApi {
     @GetMapping(value = APP_ROOT + "/users/{idUser}", produces = MediaType.APPLICATION_JSON_VALUE)

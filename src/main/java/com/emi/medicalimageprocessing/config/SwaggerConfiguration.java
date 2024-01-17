@@ -1,6 +1,7 @@
 package com.emi.medicalimageprocessing.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -17,6 +18,7 @@ import java.util.List;
 
 import static com.emi.medicalimageprocessing.utils.Constants.APP_ROOT;
 @Configuration
+@CrossOrigin(origins = "http://localhost:4200")
 @EnableSwagger2
 public class SwaggerConfiguration {
     public static String AUTHORISATION_HEADER="authorization";
@@ -25,7 +27,7 @@ public class SwaggerConfiguration {
                 .apiInfo(
                         new ApiInfoBuilder()
                                 .description("Medical Image processing API documentation")
-                                .title("Medical Image processing REST API")
+                                .title("Medvisor REST API")
                                 .build()
                 )
                 .groupName("REST API V1")
