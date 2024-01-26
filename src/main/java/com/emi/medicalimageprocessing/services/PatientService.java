@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface PatientService {
     Patient createPatient(Patient dto);
     Optional<Patient> findById(Integer id);
-    Optional<Patient> findByFirstnameAndLastname(String fullname);
+    Optional<Patient> findByFirstnameAndLastname(String firstname , String lastname);
     List<Patient> findAll();
     void delete(Integer id);
     Patient updatePatient(Integer id, Patient patient);

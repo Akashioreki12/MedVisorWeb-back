@@ -15,8 +15,12 @@ import java.util.Optional;
 @RequestMapping("/patients")
 public class PatientController {
 
-    @Autowired
+
     private PatientService patientService;
+    @Autowired
+    public PatientController(PatientService patientService) {
+        this.patientService = patientService;
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Patient>> getPatientById(@PathVariable Integer id) {

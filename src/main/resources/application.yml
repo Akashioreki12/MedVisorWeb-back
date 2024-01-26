@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/student?currentSchema=jwt_security&ssl=false
+    url: jdbc:postgresql://localhost:5432/student
     username: postgres
     password: 1234
     driver-class-name: org.postgresql.Driver
@@ -9,9 +9,11 @@ spring:
     show-sql: false
     hibernate:
       ddl-auto: update
+    open-in-view: false
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
