@@ -21,12 +21,12 @@ import java.time.Instant;
 public  class AbstractEntity implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
     //@CreatedDate
-    @Column(name = "creationDate", nullable = false)
+    @Column(name = "creationDate")
     private Instant creationDate;
 
     //@LastModifiedDate

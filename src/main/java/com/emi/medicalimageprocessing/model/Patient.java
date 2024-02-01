@@ -1,10 +1,9 @@
 package com.emi.medicalimageprocessing.model;
 
+import io.swagger.models.auth.In;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.Instant;
 
 @Data

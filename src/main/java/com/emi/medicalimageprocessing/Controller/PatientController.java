@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin("http://localhost:4200/patient")
 @RequestMapping("/patients")
 public class PatientController {
 
@@ -22,7 +23,7 @@ public class PatientController {
         this.patientService = patientService;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/find/{id}")
     public ResponseEntity<Optional<Patient>> getPatientById(@PathVariable Integer id) {
         Optional<Patient> patient = patientService.findById(id);
         if (patient != null) {
@@ -32,19 +33,19 @@ public class PatientController {
         }
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<Patient>> getAllPatients() {
         List<Patient> patients = patientService.findAll();
         return ResponseEntity.ok(patients);
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public ResponseEntity<Patient> createPatient(@RequestBody Patient patient) {
         Patient createdPatient = patientService.createPatient(patient);
         return ResponseEntity.ok(createdPatient);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Patient> updatePatient(@PathVariable Integer id, @RequestBody Patient patient) {
         try {
             Patient updatedPatient = patientService.updatePatient(id, patient);
@@ -54,7 +55,7 @@ public class PatientController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deletePatient(@PathVariable Integer id) {
         patientService.delete(id);
         return ResponseEntity.noContent().build();
