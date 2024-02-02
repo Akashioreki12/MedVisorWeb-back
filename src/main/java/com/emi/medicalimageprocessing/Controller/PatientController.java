@@ -1,7 +1,5 @@
 package com.emi.medicalimageprocessing.Controller;
 
-import com.emi.medicalimageprocessing.dto.PatientDto;
-
 import com.emi.medicalimageprocessing.model.Patient;
 import com.emi.medicalimageprocessing.services.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,37 +10,31 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin("http://localhost:4200/patient")
+@CrossOrigin(origins = "http://localhost:4200") // Adjust origins as needed
 @RequestMapping("/patients")
 public class PatientController {
 
+    private final PatientService patientService;
 
-    private PatientService patientService;
     @Autowired
     public PatientController(PatientService patientService) {
         this.patientService = patientService;
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<Optional<Patient>> getPatientById(@PathVariable Integer id) {
+    public ResponseEntity<Patient> getPatientById(@PathVariable Integer id) {
         Optional<Patient> patient = patientService.findById(id);
-        if (patient != null) {
-            return ResponseEntity.ok(patient);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return patient.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Patient>> getAllPatients() {
-        List<Patient> patients = patientService.findAll();
-        return ResponseEntity.ok(patients);
+    public List<Patient> getAllPatients() {
+        return patientService.findAll();
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Patient> createPatient(@RequestBody Patient patient) {
-        Patient createdPatient = patientService.createPatient(patient);
-        return ResponseEntity.ok(createdPatient);
+    public Patient createPatient(@RequestBody Patient patient) {
+        return patientService.createPatient(patient);
     }
 
     @PutMapping("/update/{id}")

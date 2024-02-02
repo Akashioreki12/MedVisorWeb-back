@@ -31,7 +31,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests().antMatchers("/**/auth/authenticate",
+        http.csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/**/auth/authenticate",
                         "/v2/api-docs",
                         "/swagger-resources",
                         "/swagger-resources/**",
@@ -40,13 +42,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/swagger-ui.html",
                         "/webjars/**",
                         "/v3/api-docs/**",
-                        "/swagger-ui/**").
-                permitAll()
-                .anyRequest().authenticated().and().sessionManagement().
-                sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                        "/swagger-ui/**",
+                        "/patients/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterAfter(applicationRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
-
     @Bean
     public CorsFilter corsFilter() {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

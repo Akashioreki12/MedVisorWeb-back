@@ -5,13 +5,14 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name="patient")
+@Table
 public class Patient extends AbstractEntity {
 
     @Column(name="firstName")
@@ -19,13 +20,15 @@ public class Patient extends AbstractEntity {
     @Column(name="lastName")
     private String lastName;
     @Column(name="dateOfBirth")
-    private Instant dateOfBirth;
+    private String dateOfBirth;
     @Column(name="gender")
     private String gender;
     @Column(name="age")
-    private Integer Age;
-    @Column(name="adress")
+    private Integer age;
+    @Column(name="address")
     private String address;
     @Column(name="phoneNumber")
     private String phoneNumber;
+    @Column(name = "cin")
+    private String cin;
 }

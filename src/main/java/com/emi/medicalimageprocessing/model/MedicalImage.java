@@ -12,7 +12,7 @@ import java.time.Instant;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name="medicalImage")
+@Table
 public class MedicalImage extends AbstractEntity {
     @Column(name="imageID")
     private String imageID;

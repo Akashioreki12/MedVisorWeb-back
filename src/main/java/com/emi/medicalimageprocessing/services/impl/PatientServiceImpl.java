@@ -24,10 +24,9 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public Patient createPatient(Patient patient) {
-        patient.setId(nextId++);
-        patientRepository.findAll().add(patient.getId(), patient);
-        return patient;
+        return patientRepository.save(patient);
     }
+
 
 
 
@@ -56,12 +55,14 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public Patient updatePatient(Integer id, Patient patient) {
-        if (patientRepository.findAll().contains(id)) {
+        Optional<Patient> existingPatientOptional = patientRepository.findById(id);
+        if (existingPatientOptional.isPresent()) {
             patient.setId(id);
-            patientRepository.findAll().add(patient);
-            return patient;
+            return patientRepository.save(patient);
         } else {
             throw new IllegalArgumentException("Patient with id " + id + " not found");
         }
     }
+
+
 }
