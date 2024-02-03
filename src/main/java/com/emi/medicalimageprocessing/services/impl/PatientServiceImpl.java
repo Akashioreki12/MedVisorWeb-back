@@ -1,6 +1,5 @@
 package com.emi.medicalimageprocessing.services.impl;
 
-import com.emi.medicalimageprocessing.dto.PatientDto;
 import com.emi.medicalimageprocessing.model.Patient;
 import com.emi.medicalimageprocessing.repository.PatientRepository;
 import com.emi.medicalimageprocessing.services.PatientService;
@@ -62,6 +61,11 @@ public class PatientServiceImpl implements PatientService {
         } else {
             throw new IllegalArgumentException("Patient with id " + id + " not found");
         }
+    }
+
+    @Override
+    public List<Patient> searchPatients(String searchTerm) {
+        return patientRepository.findByFirstNameOrLastName(searchTerm, searchTerm);
     }
 
 

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200") // Adjust origins as needed
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/patients")
 public class PatientController {
 
@@ -51,5 +51,10 @@ public class PatientController {
     public ResponseEntity<Void> deletePatient(@PathVariable Integer id) {
         patientService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/search/{searchTerm}")
+    public List<Patient> searchPatients(@PathVariable String searchTerm) {
+        return patientService.searchPatients(searchTerm);
     }
 }
