@@ -9,7 +9,7 @@ import java.util.List;
 public class UserValidator {
     public static List<String> validate (UserDto userDto){
         List<String> errors = new ArrayList<>();
-        if (!StringUtils.hasLength(userDto.getFullName())){
+        if (!StringUtils.hasLength(userDto.getName())){
             errors.add("Veuiller renseigner le nom complet");
         }
         if (!StringUtils.hasLength(userDto.getUsername())){
@@ -18,6 +18,10 @@ public class UserValidator {
         if (!StringUtils.hasLength(userDto.getPassword())){
             errors.add("Veuiller renseigner le mot de passe");
         }
+        if (!StringUtils.hasLength(userDto.getPrenom())){
+            errors.add("Veuiller renseigner le prenom complet");
+        }
+
 
         return errors;
     }

@@ -20,7 +20,13 @@ public class User extends AbstractEntity {
     @Column(name="password")
     private String password;
 
-    @Column(name="fullname")
-    private String fullName;
+    @Column(name="name")
+    private String Name;
+
+    @Column(name="prenom")
+    private String Prenom;
+
+    @Column(name="numero")
+    private Long Numero;
 
 }
