@@ -30,13 +30,19 @@ public class SurveyController implements SurveyApi {
     @Override
     public ResponseEntity<String> save(SurveyDto dto) {
         surveyService.save(dto);
-        Patient patient = new Patient();
-        patient.setFirstName(dto.getFirstName());
-        patient.setLastName(dto.getLastName());
-        patient.setDateOfBirth(dto.getAge());
-        patient.setPhoneNumber(dto.getPhoneNumber());
-        patient.setCin(dto.getCin());
-        patientService.createPatient(patient);
+        Patient existingPatient = patientService.findByCin(dto.getCin());
+
+        if (existingPatient == null) {
+            // Patient does not exist, create a new one
+            Patient patient = new Patient();
+            patient.setFirstName(dto.getFirstName());
+            patient.setLastName(dto.getLastName());
+            patient.setDateOfBirth(dto.getAge());
+            patient.setPhoneNumber(dto.getPhoneNumber());
+            patient.setCin(dto.getCin());
+
+            patientService.createPatient(patient);
+        }
         SurveyDto data = aiModelService.preProcessData(dto);
         return aiModelService.sendRequestToAiModel(data);
     }

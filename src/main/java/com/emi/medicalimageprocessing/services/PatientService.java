@@ -16,4 +16,6 @@ public interface PatientService {
     Patient updatePatient(Integer id, Patient patient);
 
     List<Patient> searchPatients(String searchTerm);
+
+    Patient findByCin(String cin);
 }

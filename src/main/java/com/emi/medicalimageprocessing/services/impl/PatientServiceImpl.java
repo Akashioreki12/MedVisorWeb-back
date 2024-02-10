@@ -68,5 +68,11 @@ public class PatientServiceImpl implements PatientService {
         return patientRepository.findByFirstNameOrLastName(searchTerm, searchTerm);
     }
 
+    @Override
+    public Patient findByCin(String cin) {
+        Optional<Patient> patientOptional = patientRepository.findByCin(cin);
+        return patientOptional.orElse(null);
+    }
+
 
 }
