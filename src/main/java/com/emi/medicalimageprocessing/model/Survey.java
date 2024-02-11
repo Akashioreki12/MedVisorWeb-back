@@ -16,10 +16,11 @@ import javax.persistence.*;
 @Table(name="survey")
 public class Survey extends AbstractEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
+
+    @OneToOne
+    @JoinColumn(name = "patient_id")
+    private Patient patient;
+
 
 
     @Column(name = "firstName")

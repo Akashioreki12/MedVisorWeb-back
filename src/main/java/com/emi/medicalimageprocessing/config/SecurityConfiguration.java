@@ -42,7 +42,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/v3/api-docs/**",
                         "/swagger-ui/**",
                         "/patients/**",
-                        "/medicalimageprocessing/**").
+                        "/medicalimageprocessing/**",
+                        "/survey/**").
                 permitAll()
                 .anyRequest().authenticated().and().sessionManagement().
                 sessionCreationPolicy(SessionCreationPolicy.STATELESS);

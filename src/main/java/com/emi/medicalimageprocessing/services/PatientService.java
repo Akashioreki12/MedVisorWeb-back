@@ -4,6 +4,8 @@ import com.emi.medicalimageprocessing.dto.PatientDto;
 import com.emi.medicalimageprocessing.model.Patient;
 
 
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,4 +18,8 @@ public interface PatientService {
     Patient updatePatient(Integer id, Patient patient);
 
     List<Patient> searchPatients(String searchTerm);
+
+    List<Patient> searchPatientsByDate(Instant date);
+
+    Patient createOrUpdatePatient(Patient patient);
 }

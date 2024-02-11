@@ -15,6 +15,11 @@ import java.util.Date;
 @Table
 public class Patient extends AbstractEntity {
 
+    @OneToOne(mappedBy = "patient", cascade = CascadeType.ALL)
+    private Survey survey;
+
+
+
     @Column(name="firstName")
     private String firstName;
     @Column(name="lastName")
@@ -24,7 +29,7 @@ public class Patient extends AbstractEntity {
     @Column(name="gender")
     private String gender;
     @Column(name="age")
-    private Integer age;
+    private String age;
     @Column(name="address")
     private String address;
     @Column(name="phoneNumber")

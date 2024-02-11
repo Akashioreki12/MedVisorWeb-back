@@ -1,11 +1,16 @@
 package com.emi.medicalimageprocessing.Controller;
 
 import com.emi.medicalimageprocessing.model.Patient;
+import com.emi.medicalimageprocessing.repository.PatientRepository;
 import com.emi.medicalimageprocessing.services.PatientService;
+import com.emi.medicalimageprocessing.services.SurveyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,10 +20,13 @@ import java.util.Optional;
 public class PatientController {
 
     private final PatientService patientService;
+    private final SurveyService surveyService;
 
     @Autowired
-    public PatientController(PatientService patientService) {
+    public PatientController(PatientService patientService, SurveyService surveyService) {
         this.patientService = patientService;
+        this.surveyService = surveyService;
+
     }
 
     @GetMapping("/find/{id}")
@@ -34,7 +42,7 @@ public class PatientController {
 
     @PostMapping("/add")
     public Patient createPatient(@RequestBody Patient patient) {
-        return patientService.createPatient(patient);
+        return patientService.createOrUpdatePatient(patient);
     }
 
     @PutMapping("/update/{id}")
@@ -56,5 +64,11 @@ public class PatientController {
     @GetMapping("/search/{searchTerm}")
     public List<Patient> searchPatients(@PathVariable String searchTerm) {
         return patientService.searchPatients(searchTerm);
+    }
+
+    @GetMapping("/searchByDate/{date}")
+    public List<Patient> searchPatientsByDate(@PathVariable String date) {
+        Instant instant = Instant.parse(date + "T00:00:00Z");
+        return patientService.searchPatientsByDate(instant);
     }
 }
