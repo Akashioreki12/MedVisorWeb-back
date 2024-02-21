@@ -32,6 +32,8 @@ public interface SurveyService {
 
     List<Survey> searchSurveysByDate(Instant date);
 
+    Optional<Survey> findByCin(String cin);
 
+    List<Survey> findAllByCin(String cin);
 
 }

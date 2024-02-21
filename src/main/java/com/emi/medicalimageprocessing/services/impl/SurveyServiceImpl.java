@@ -120,4 +120,13 @@ public class SurveyServiceImpl implements SurveyService {
     }
 
 
+    @Override
+    public Optional<Survey> findByCin(String cin){
+        return surveyRepository.findByCin(cin);
+    }
+
+    @Override
+    public List<Survey> findAllByCin(String cin){
+        return surveyRepository.findAllByCin(cin);
+    }
 }
