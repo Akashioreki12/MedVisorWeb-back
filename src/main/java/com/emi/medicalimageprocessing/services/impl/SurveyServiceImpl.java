@@ -83,7 +83,7 @@ public class SurveyServiceImpl implements SurveyService {
 
     @Override
     public List<Survey> searchSurveys(String searchTerm) {
-        return surveyRepository.findByFirstNameOrLastName(searchTerm, searchTerm);
+        return surveyRepository.findByFirstNameIgnoreCaseOrLastNameIgnoreCase(searchTerm, searchTerm);
     }
 
     @Override

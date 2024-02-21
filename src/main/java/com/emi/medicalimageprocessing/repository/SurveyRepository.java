@@ -21,7 +21,7 @@ public interface SurveyRepository extends JpaRepository<Survey, Integer> {
 
 
     List<Survey> findByFirstNameOrLastName(String firstName, String lastName);
-
+    List<Survey> findByFirstNameIgnoreCaseOrLastNameIgnoreCase(String firstName, String lastName);
 
     @Query("SELECT p FROM Survey p WHERE DATE(p.creationDate) = DATE(:date)")
     List<Survey> findByCreationDate(@Param("date") Instant date);

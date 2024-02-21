@@ -75,17 +75,16 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-<<<<<<< HEAD
     public List<Patient> searchPatientsByDate(Instant date) {
         return patientRepository.findByCreationDate(date);
     }
-=======
+
     public Patient findByCin(String cin) {
         Optional<Patient> patientOptional = patientRepository.findByCin(cin);
         return patientOptional.orElse(null);
     }
 
->>>>>>> origin/saloua
+
 
 
 

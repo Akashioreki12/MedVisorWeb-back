@@ -17,8 +17,6 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/survey")
 public class SurveyController implements SurveyApi {
     private SurveyService surveyService;
     private AiModelService aiModelService;
@@ -54,25 +52,23 @@ public class SurveyController implements SurveyApi {
         return aiModelService.sendRequestToAiModel(data);
     }
 
-
-    @GetMapping("/find/{id}")
-    public Optional<Survey> getSurveyById(@PathVariable Integer id) {
-        Optional<Survey> survey = surveyService.findById(id);
-        return survey;
+    @Override
+    public Optional<Survey> getSurveyById(Integer id) {
+        return surveyService.findById(id);
     }
 
-    @GetMapping("/all")
+    @Override
     public List<Survey> getAllSurveys() {
         return surveyService.findAll();
     }
 
-    @PostMapping("/add")
-    public Survey createSurvey(@RequestBody Survey survey) {
+    @Override
+    public Survey createSurvey(Survey survey) {
         return surveyService.createOrUpdateSurvey(survey);
     }
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Survey> updateSurvey(@PathVariable Integer id, @RequestBody Survey survey) {
+    @Override
+    public ResponseEntity<Survey> updateSurvey(Integer id, Survey survey) {
         try {
             Survey updatedSurvey = surveyService.updateSurvey(id, survey);
             return ResponseEntity.ok(updatedSurvey);
@@ -81,22 +77,21 @@ public class SurveyController implements SurveyApi {
         }
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteSurvey(@PathVariable Integer id) {
+    @Override
+    public ResponseEntity<Void> deleteSurvey(Integer id) {
         surveyService.delete(id);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/search/{searchTerm}")
-    public List<Survey> searchSurveys(@PathVariable String searchTerm) {
+    @Override
+    public List<Survey> searchSurveys(String searchTerm) {
         return surveyService.searchSurveys(searchTerm);
     }
 
-    @GetMapping("/searchByDate/{date}")
-    public List<Survey> searchSurveysByDate(@PathVariable String date) {
+    @Override
+    public List<Survey> searchSurveysByDate(String date) {
         Instant instant = Instant.parse(date + "T00:00:00Z");
         return surveyService.searchSurveysByDate(instant);
     }
-
 
 }
