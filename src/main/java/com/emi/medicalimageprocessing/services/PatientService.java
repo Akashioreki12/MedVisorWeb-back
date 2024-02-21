@@ -19,11 +19,10 @@ public interface PatientService {
 
     List<Patient> searchPatients(String searchTerm);
 
-<<<<<<< HEAD
+
     List<Patient> searchPatientsByDate(Instant date);
 
     Patient createOrUpdatePatient(Patient patient);
-=======
     Patient findByCin(String cin);
->>>>>>> origin/saloua
+
 }

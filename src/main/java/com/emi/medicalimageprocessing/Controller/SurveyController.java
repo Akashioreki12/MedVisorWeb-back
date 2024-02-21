@@ -18,7 +18,6 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/survey")
 public class SurveyController implements SurveyApi {
     private SurveyService surveyService;
     private AiModelService aiModelService;
@@ -55,48 +54,14 @@ public class SurveyController implements SurveyApi {
     }
 
 
-    @GetMapping("/find/{id}")
+
+
+    @Override
     public Optional<Survey> getSurveyById(@PathVariable Integer id) {
         Optional<Survey> survey = surveyService.findById(id);
         return survey;
     }
 
-    @GetMapping("/all")
-    public List<Survey> getAllSurveys() {
-        return surveyService.findAll();
-    }
-
-    @PostMapping("/add")
-    public Survey createSurvey(@RequestBody Survey survey) {
-        return surveyService.createOrUpdateSurvey(survey);
-    }
-
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Survey> updateSurvey(@PathVariable Integer id, @RequestBody Survey survey) {
-        try {
-            Survey updatedSurvey = surveyService.updateSurvey(id, survey);
-            return ResponseEntity.ok(updatedSurvey);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteSurvey(@PathVariable Integer id) {
-        surveyService.delete(id);
-        return ResponseEntity.noContent().build();
-    }
-
-    @GetMapping("/search/{searchTerm}")
-    public List<Survey> searchSurveys(@PathVariable String searchTerm) {
-        return surveyService.searchSurveys(searchTerm);
-    }
-
-    @GetMapping("/searchByDate/{date}")
-    public List<Survey> searchSurveysByDate(@PathVariable String date) {
-        Instant instant = Instant.parse(date + "T00:00:00Z");
-        return surveyService.searchSurveysByDate(instant);
-    }
 
 
 }
