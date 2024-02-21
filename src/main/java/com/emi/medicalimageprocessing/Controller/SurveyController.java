@@ -18,6 +18,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
+
 public class SurveyController implements SurveyApi {
     private SurveyService surveyService;
     private AiModelService aiModelService;
@@ -63,5 +64,41 @@ public class SurveyController implements SurveyApi {
     }
 
 
+    @Override
+    public List<Survey> getAllSurveys() {
+        return surveyService.findAll();
+    }
+
+    @Override
+    public Survey createSurvey(Survey survey) {
+        return surveyService.createOrUpdateSurvey(survey);
+    }
+
+    @Override
+    public ResponseEntity<Survey> updateSurvey(Integer id, Survey survey) {
+        try {
+            Survey updatedSurvey = surveyService.updateSurvey(id, survey);
+            return ResponseEntity.ok(updatedSurvey);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @Override
+    public ResponseEntity<Void> deleteSurvey(Integer id) {
+        surveyService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @Override
+    public List<Survey> searchSurveys(String searchTerm) {
+        return surveyService.searchSurveys(searchTerm);
+    }
+
+    @Override
+    public List<Survey> searchSurveysByDate(String date) {
+        Instant instant = Instant.parse(date + "T00:00:00Z");
+        return surveyService.searchSurveysByDate(instant);
+    }
 
 }

@@ -79,12 +79,11 @@ public class PatientServiceImpl implements PatientService {
     public List<Patient> searchPatientsByDate(Instant date) {
         return patientRepository.findByCreationDate(date);
     }
+
     public Patient findByCin(String cin) {
         Optional<Patient> patientOptional = patientRepository.findByCin(cin);
         return patientOptional.orElse(null);
     }
-
-
 
 
     @Override
