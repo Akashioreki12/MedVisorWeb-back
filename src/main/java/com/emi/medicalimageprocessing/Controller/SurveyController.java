@@ -62,10 +62,6 @@ public class SurveyController implements SurveyApi {
         return surveyService.findAll();
     }
 
-    @Override
-    public Survey createSurvey(Survey survey) {
-        return surveyService.createOrUpdateSurvey(survey);
-    }
 
     @Override
     public ResponseEntity<Survey> updateSurvey(Integer id, Survey survey) {
@@ -93,5 +89,16 @@ public class SurveyController implements SurveyApi {
         Instant instant = Instant.parse(date + "T00:00:00Z");
         return surveyService.searchSurveysByDate(instant);
     }
+
+    @Override
+    public List<Survey> findAllByCin(String cin) {
+        return surveyService.findAllByCin(cin);
+    }
+
+    @Override
+    public Optional<Survey> findByCin(String  cin){
+        return surveyService.findByCin(cin);
+    }
+
 
 }

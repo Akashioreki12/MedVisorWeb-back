@@ -32,11 +32,13 @@ public interface SurveyApi {
     @GetMapping(APP_ROOT+"/surveys/find/{id}")
     Optional<Survey> getSurveyById(@PathVariable Integer id);
 
+    @GetMapping(APP_ROOT+"/surveys/findByCin/{cin}")
+    Optional<Survey> findByCin(@PathVariable String cin);
+
     @GetMapping(APP_ROOT+"/surveys/all")
     List<Survey> getAllSurveys();
 
-    @PostMapping(APP_ROOT+"/surveys/add")
-    Survey createSurvey(@RequestBody Survey survey);
+
 
     @PutMapping(APP_ROOT+"/surveys/update/{id}")
     ResponseEntity<Survey> updateSurvey(@PathVariable Integer id, @RequestBody Survey survey);
@@ -49,6 +51,9 @@ public interface SurveyApi {
 
     @GetMapping(APP_ROOT+"/surveys/searchByDate/{date}")
     List<Survey> searchSurveysByDate(@PathVariable String date);
+
+    @GetMapping(APP_ROOT+"/surveys/allByCin/{cin}")
+    List<Survey> findAllByCin(@PathVariable String cin);
 }
 
 
