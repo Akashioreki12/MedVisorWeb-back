@@ -45,13 +45,18 @@ public class SurveyController implements SurveyApi {
     public ResponseEntity<String> save(SurveyDto dto) {
 
 
+
+
         /*
         List<String> validationErrors = SurveyValidator.validate(dto);
 
         if (!validationErrors.isEmpty()) {
             String errorMessage = "Validation errors: " + String.join(", ", validationErrors);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
-        }*/
+        }
+
+        */
+
 
         /*
         ResponseEntity<String> result= aiModelService.sendRequestToAiModel(data);
