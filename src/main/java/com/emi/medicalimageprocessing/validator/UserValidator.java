@@ -21,8 +21,9 @@ public class UserValidator {
         if (!StringUtils.hasLength(userDto.getPrenom())){
             errors.add("Veuiller renseigner le prenom complet");
         }
-
-
         return errors;
     }
+
+
+
 }

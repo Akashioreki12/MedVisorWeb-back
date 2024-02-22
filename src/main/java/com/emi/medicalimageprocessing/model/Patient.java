@@ -25,11 +25,11 @@ public class Patient extends AbstractEntity {
     @Column(name="lastName")
     private String lastName;
     @Column(name="dateOfBirth")
-    private String dateOfBirth;
+    private Integer dateOfBirth;
     @Column(name="gender")
     private String gender;
     @Column(name="age")
-    private String age;
+    private Integer age;
     @Column(name="address")
     private String address;
     @Column(name="phoneNumber")

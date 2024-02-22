@@ -1,5 +1,4 @@
 package com.emi.medicalimageprocessing.handlers;
-
 import com.emi.medicalimageprocessing.exception.EntityNotFoundException;
 import com.emi.medicalimageprocessing.exception.InvalidEntityException;
 import org.springframework.http.HttpStatus;
@@ -20,7 +19,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
                 .build();
         return  new ResponseEntity<>(errorDto, notFound);
     }
-
     @ExceptionHandler(InvalidEntityException.class)
     public ResponseEntity<ErrorDto> handleException(InvalidEntityException exception, WebRequest webRequest){
         final HttpStatus badRequest = HttpStatus.BAD_REQUEST;

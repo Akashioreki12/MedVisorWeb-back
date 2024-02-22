@@ -4,6 +4,8 @@ import com.emi.medicalimageprocessing.model.Survey;
 import lombok.Builder;
 import lombok.Data;
 
+import javax.persistence.Column;
+
 @Data
 @Builder
 public class SurveyDto {
@@ -16,10 +18,9 @@ public class SurveyDto {
 
 
 
-
     private String firstName;
     private String lastName;
-    private String age;
+    private Integer age;
     private String gender;
     private String countryCode;
     private String phoneNumber;
@@ -42,6 +43,7 @@ public class SurveyDto {
     private String smokingStatus;
     private String alcoholStatus;
     private String workType;
+    private Double result;
 
 
 
@@ -76,6 +78,7 @@ public class SurveyDto {
                 .smokingStatus(survey.getSmokingStatus())
                 .alcoholStatus(survey.getAlcoholStatus())
                 .workType(survey.getWorkType())
+                .result(survey.getResult())
                 .build();
 
     }
@@ -112,6 +115,7 @@ public class SurveyDto {
         survey.setSmokingStatus(surveyDto.getSmokingStatus());
         survey.setAlcoholStatus(surveyDto.getAlcoholStatus());
         survey.setWorkType(surveyDto.getWorkType());
+        survey.setResult(surveyDto.getResult());
 
         return survey;
     }

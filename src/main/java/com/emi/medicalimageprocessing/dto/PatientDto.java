@@ -13,7 +13,7 @@ public class PatientDto {
     private Integer id;
     private String firstName;
     private String lastName;
-    private String dateOfBirth;
+    private Integer dateOfBirth;
     private String gender;
     private Integer age;
     private String address;

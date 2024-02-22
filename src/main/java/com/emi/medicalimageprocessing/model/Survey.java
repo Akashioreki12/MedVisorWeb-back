@@ -28,7 +28,7 @@ public class Survey extends AbstractEntity {
     @Column(name = "lastName")
     private String lastName;
     @Column(name = "age")
-    private String age;
+    private Integer age;
     @Column(name = "gender")
     private String gender;
     @Column(name = "countryCode")
@@ -74,6 +74,9 @@ public class Survey extends AbstractEntity {
     private String alcoholStatus;
     @Column(name = "workType")
     private String workType;
+
+    @Column(name ="result")
+    private Double result;
 
 
 }
