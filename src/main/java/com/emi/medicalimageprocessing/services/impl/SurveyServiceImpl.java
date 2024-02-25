@@ -119,7 +119,7 @@ public class SurveyServiceImpl implements SurveyService {
         return null;
     }
     @Override
-    public Optional<Survey> findByCin(String cin){
+    public Optional<Survey> findSurveyByCin(String cin){
         return surveyRepository.findByCin(cin);
     }
     @Override

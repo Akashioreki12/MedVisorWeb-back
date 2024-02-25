@@ -39,7 +39,7 @@ public interface SurveyApi {
     Optional<Survey> getSurveyById(@PathVariable Integer id);
 
     @GetMapping(APP_ROOT+"/surveys/findByCin/{cin}")
-    Optional<Survey> findByCin(@PathVariable String cin);
+    Optional<Survey> findSurveyByCin(@PathVariable String cin);
 
     @GetMapping(APP_ROOT+"/surveys/all")
     List<Survey> getAllSurveys();
