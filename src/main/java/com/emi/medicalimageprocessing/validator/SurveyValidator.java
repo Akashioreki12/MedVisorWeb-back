@@ -372,16 +372,13 @@ public class SurveyValidator {
             errors.add(fieldName + " must be either True or False");
         }
     }
-
     public static void validateResidentialArea(String fieldValue,String fieldName ,List<String> errors) {
         if (!StringUtils.hasLength(fieldValue)) {
             errors.add("Please provide " + fieldName.toLowerCase());
-        } else if (!fieldValue.equals("Urban") && !fieldValue.equals("Ruran")) {
-            errors.add(fieldName + " must be either Urban or Rual");
+        } else if (!fieldValue.equals("Urban") && !fieldValue.equals("Rural")) {
+            errors.add(fieldName + " must be either Urban or Rural");
         }
     }
-
-
     public static void validateSmokingStatus(String fieldValue, String fieldName, List<String> errors) {
         List<String> allowedValues = Arrays.asList("Fumeur", "Ex-fumeur", "Jamais fumé");
 
@@ -391,7 +388,6 @@ public class SurveyValidator {
             errors.add(fieldName + " must be one of the following values: " + String.join(", ", allowedValues));
         }
     }
-
     public static void validateAlcoholStatus(String fieldValue,String fieldName ,List<String> errors) {
         if (!StringUtils.hasLength(fieldValue)) {
             errors.add("Please provide " + fieldName.toLowerCase());
@@ -399,7 +395,6 @@ public class SurveyValidator {
             errors.add(fieldName + " must be either True or False");
         }
     }
-
     public static void validateWorkType(String fieldValue, String fieldName, List<String> errors) {
         List<String> allowedValues = Arrays.asList("Secteur privé", "Secteur public","Indeterminé","Sans travail","Au foyer","Activité indépendante");
 
@@ -409,37 +404,4 @@ public class SurveyValidator {
             errors.add(fieldName + " must be one of the following values: " + String.join(", ", allowedValues));
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

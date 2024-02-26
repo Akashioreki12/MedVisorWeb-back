@@ -47,7 +47,7 @@ public class SurveyController implements SurveyApi {
 
 
 
-        /*
+
         List<String> validationErrors = SurveyValidator.validate(dto);
 
         if (!validationErrors.isEmpty()) {
@@ -55,7 +55,7 @@ public class SurveyController implements SurveyApi {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
         }
 
-        */
+
 
 
         /*
