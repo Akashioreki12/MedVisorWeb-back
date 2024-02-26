@@ -148,8 +148,8 @@ public class SurveyController implements SurveyApi {
     }
 
     @Override
-    public Optional<Survey> findByCin(String  cin){
-        return surveyService.findByCin(cin);
+    public Optional<Survey> findSurveyByCin(String  cin){
+        return surveyService.findSurveyByCin(cin);
     }
 
 
