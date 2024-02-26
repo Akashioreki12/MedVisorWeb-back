@@ -7,4 +7,6 @@ public interface AiModelService {
     SurveyDto preProcessData(SurveyDto dto);
     ResponseEntity<String> sendRequestToAiModel(SurveyDto dto);
 
+    public int extractResultValue(ResponseEntity<String> responseEntity);
+
 }

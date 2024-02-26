@@ -54,33 +54,12 @@ public class SurveyController implements SurveyApi {
             String errorMessage = "Validation errors: " + String.join(", ", validationErrors);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
         }
-
-
-
-
-        /*
-        ResponseEntity<String> result= aiModelService.sendRequestToAiModel(data);
-        String responseBody = result.getBody();
-
-        if (responseBody != null) {
-            try {
-                ObjectMapper objectMapper = new ObjectMapper();
-                JsonNode jsonNode = objectMapper.readTree(responseBody);
-                double resultValue = jsonNode.get("result").asInt();
-                dto.setResult(resultValue);
-                System.out.println("Result Value: " + resultValue);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-*/
-
-
-
-
+        SurveyDto data = aiModelService.preProcessData(dto);
+        ResponseEntity<String> stringResult = aiModelService.sendRequestToAiModel(data);
+        double result = this.aiModelService.extractResultValue(stringResult);
+        dto.setResult(result);
 
         surveyService.save(dto);
-        SurveyDto data = aiModelService.preProcessData(dto);
         Patient existingPatient = patientService.findByCin(dto.getCin());
 
         if (existingPatient == null) {
@@ -95,8 +74,7 @@ public class SurveyController implements SurveyApi {
 
             patientService.createPatient(patient);
         }
-
-        return aiModelService.sendRequestToAiModel(data);
+        return stringResult;
     }
 
 

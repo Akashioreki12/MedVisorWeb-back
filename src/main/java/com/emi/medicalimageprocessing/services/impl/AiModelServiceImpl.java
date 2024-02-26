@@ -39,4 +39,25 @@ public class AiModelServiceImpl implements AiModelService {
     }
 
 
+    @Override
+    public int extractResultValue(ResponseEntity<String> responseEntity) {
+        if (responseEntity != null && responseEntity.getStatusCode().is2xxSuccessful()) {
+            String responseBody = responseEntity.getBody();
+            int startIndex = responseBody.indexOf("{");
+            int endIndex = responseBody.lastIndexOf("}") + 1;
+            if (startIndex >= 0 && endIndex > startIndex) {
+                String jsonSubstring = responseBody.substring(startIndex, endIndex);
+                try {
+                    return Integer.parseInt(jsonSubstring.split(":")[1].replace("}", "").trim());
+                } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+                    e.printStackTrace();
+                    return -1;
+                }
+            } else {
+                return -1;
+            }
+        } else {
+            return -1;
+        }
+    }
 }
